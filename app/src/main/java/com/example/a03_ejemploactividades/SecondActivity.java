@@ -2,16 +2,31 @@ package com.example.a03_ejemploactividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 public class SecondActivity extends AppCompatActivity {
+    private Button btnAbrir;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         Log.e("ESTADOS","1- En el método onCreate SECOND");
+
+        btnAbrir = findViewById(R.id.btnAbrirSecond);
+        btnAbrir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -42,6 +57,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.e("ESTADOS","6- En el método onRestart del SECOND");
+        this.onDestroy();
     }
 
     @Override
